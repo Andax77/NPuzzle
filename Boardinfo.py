@@ -17,7 +17,7 @@ class PriorityQueue(object):
 			sys.exit("%s Duplicated ERROR !" % data)
 		self.queue.append(data)
 
-	def show(self):
+	def print_grid(self):
 		i = 0
 		for f in self.queue:
 			print(f, end = " ")
@@ -25,6 +25,9 @@ class PriorityQueue(object):
 			if i >= math.sqrt(len(self.queue)):
 				i = 0
 				print()
+
+	def get(self, index):
+		return self.queue[index]
 
 	def delete(self):
 		try:
@@ -41,4 +44,4 @@ class PriorityQueue(object):
 
 class BoardInfo():
 	size = 0
-	tab = PriorityQueue()
+	node = PriorityQueue()

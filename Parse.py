@@ -19,12 +19,13 @@ def parse(file):
 			sys.exit("Error Map Syntax !")
 		for f in line.split():
 			if countLine < info.size:
-				info.tab.insert(int(f))
+				info.node.insert(int(f))
 		if ((len(line.strip().split()) == info.size) and countLine <= info.size):
 			countLine += 1
 			if countLine > info.size:
 				sys.exit("Error Map Size !")
 		line = fp.readline()
 	fp.close()
-	info.tab.show()
+	info.node.print_grid()
+	print(info.node.get(-1))
 	return info
