@@ -11,6 +11,7 @@ def parse(file):
 	info = BoardInfo()
 	info.size = int(line)
 	countLine = 0
+	error = 1
 	line = fp.readline()
 	while line:
 		line = " ".join(re.sub("\#.*$", "",line).split()).strip()
@@ -19,6 +20,8 @@ def parse(file):
 			sys.exit("Error Map Syntax !")
 		for f in line.split():
 			if countLine < info.size:
+				if (int(f) is 0):
+					error = 0
 				info.node.insert(int(f))
 		if ((len(line.strip().split()) == info.size) and countLine <= info.size):
 			countLine += 1
@@ -27,5 +30,6 @@ def parse(file):
 		line = fp.readline()
 	fp.close()
 	info.node.print_grid()
-	print(info.node.get(-1))
+	if error:
+		sys.exit("Error Need Empty Cell(0) !")
 	return info

@@ -18,7 +18,7 @@ def sign(n):
     return 0
 
 class Cell:
-    def __init__(self, canvas, root, pos, l, n=2):
+    def __init__(self, canvas, root, pos, l, n):
         self.canvas = canvas
         self.root = root
         self.n = n  # Number to display
@@ -37,17 +37,17 @@ class Cell:
 
         self._moveloop(x * self.l, y * self.l)
 
-    def double(self):
-        self.n *= 2
-        self.canvas.itemconfig(self.id + "text", text=self.n)
-        self.canvas.itemconfig(self.id + "cell", fill=COLOR_TABLE[str(self.n)])
+    # def double(self):
+    #     self.n *= 2
+    #     self.canvas.itemconfig(self.id + "text", text=self.n)
+    #     self.canvas.itemconfig(self.id + "cell", fill=COLOR_TABLE[str(self.n)])
 
     def _draw(self):
         """ Draws the cell and his number on the canvas"""
 
         x, y = self.pos
 
-        self.canvas.create_rectangle(x * self.l, y * self.l, (x + 1) * self.l, (y + 1) * self.l, fill=COLOR_TABLE[str(self.n)],
+        self.canvas.create_rectangle(x * self.l, y * self.l, (x + 1) * self.l, (y + 1) * self.l, fill="#ffffff",#COLOR_TABLE[str(self.n)],
                                      tag=(self.id, self.id + "cell"))
         self.canvas.create_text(x * self.l + (self.l / 2), y * self.l + (self.l / 2), text=self.n, font=self.font, tag=(self.id, self.id + "text"))
 
@@ -61,7 +61,8 @@ class Cell:
         newx = (abs(tomovex) - 1) * sign(tomovex)
         newy = (abs(tomovey) - 1) * sign(tomovey)
 
-        self.root.after(WAIT, lambda: self._moveloop(newx, newy))
+        self._moveloop(newx, newy)
+        # self.root.after(WAIT, lambda: self._moveloop(newx, newy))
 
     def __del__(self):
         """ When the cell is overwritten his canvas elements must be deleted """
