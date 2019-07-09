@@ -5,6 +5,8 @@ import sys
 import parse_file
 
 def main(av):
+        args = parse_args.get_args()
+        print(args)
 	if len(av) != 2:
 		print('Need 1 File')
 		return
