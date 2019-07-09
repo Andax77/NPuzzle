@@ -8,4 +8,8 @@ def main(av):
 		return
 	Parse.parse(av[1])
 
-main(sys.argv)
+if __name__ == "__main__":
+    try:
+        main(sys.argv)
+    except Exception as exception:
+        print('Dude there is an error : ', exception)
